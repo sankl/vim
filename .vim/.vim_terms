@@ -1,0 +1,148 @@
+if &term == "win32"
+"   noremap              <Delete>
+"   inoremap             <Delete>
+"   cnoremap             <Delete>
+"
+"   noremap               <BS>
+"   inoremap              <BS>
+
+"MOTION
+    imap <S-UP>     <C-W><Up>i
+    imap <S-DOWN>   <C-W><Down>i
+    imap <S-RIGHT>  <C-W><Right>i
+    imap <S-LEFT>   <C-W><Left>i
+
+    map <S-UP>     <C-W><Up>
+    map <S-DOWN>   <C-W><Down>
+    map <S-RIGHT>  <C-W><Right>
+    map <S-LEFT>   <C-W><Left>
+"\MOTION
+    set shellredir=>
+endif
+
+if &term == "xterm" 
+	set term=xterm-color
+endif
+
+if &term == "xterm-color"
+    if has("terminfo")
+        set t_Co=8
+        set t_Sf=[3%p1%dm
+        set t_Sb=[4%p1%dm
+    else
+        set t_Co=8
+        set t_Sf=[3%dm
+        set t_Sb=[4%dm
+    endif
+    set mouse=a	
+
+    imap Oa  <C-W><Up>i
+    imap Ob  <C-W><Down>i
+
+    map Oa  <C-W><Up>
+    map Ob  <C-W><Down>
+    map Oc  <C-W><Right>
+    map Od  <C-W><Left>
+endif
+
+if &term == "rxvt"
+	:set t_AB=[%?%p1%{8}%<%t25;%p1%{40}%+%e5;%p1%{32}%+%;%dm
+	:set t_AF=[%?%p1%{8}%<%t22;%p1%{30}%+%e1;%p1%{22}%+%;%dm
+endif
+
+
+if &term == "cons25r"
+"        syntax on
+        noremap              <Delete>
+        inoremap             <Delete>
+        cnoremap             <Delete>
+       noremap               <BS>
+        inoremap              <BS>
+	"	set t_ku=[A	"<Up>		arrow up			*t_ku* *'t_ku'*
+	"	set t_kd=[B	"<Down>		arrow down			*t_kd* *'t_kd'*
+	"	set t_kr=[C	"<Right>		arrow right			*t_kr* *'t_kr'*
+	"	set t_kl=[D	"<Left>		arrow left			*t_kl* *'t_kl'*
+	"		set <S-Up>		shift arrow up
+	"		set <S-Down>	shift arrow down
+	"	set t_%i	<S-Right>	shift arrow right		*t_%i* *'t_%i'*
+	"	set t_#4	<S-Left>	shift arrow left		*t_#4* *'t_#4'*
+    set t_k1=[M	"<F1>		function key 1			*t_k1* *'t_k1'*
+	"		set <xF1>		alternate F1			*<xF1>*
+    set t_k2=[N	"<F2>		function key 2		*<F2>*	*t_k2* *'t_k2'*
+	"		set <xF2>		alternate F2			*<xF2>*
+    set t_k3=[O	"<F3>		function key 3		*<F3>*	*t_k3* *'t_k3'*
+	"		set <xF3>		alternate F3			*<xF3>*
+    set t_k4=[P	"<F4>		function key 4		*<F4>*	*t_k4* *'t_k4'*
+	"		set <xF4>		alternate F4			*<xF4>*
+    set t_k5=[Q	"<F5>		function key 5		*<F5>*	*t_k5* *'t_k5'*
+    set t_k6=[R	"<F6>		function key 6		*<F6>*	*t_k6* *'t_k6'*
+    set t_k7=[S	"<F7>		function key 7		*<F7>*	*t_k7* *'t_k7'*
+    set t_k8=[T	"<F8>		function key 8		*<F8>*	*t_k8* *'t_k8'*
+    set t_k9=[U	"<F9>		function key 9		*<F9>*	*t_k9* *'t_k9'*
+    set t_k;=[V	"<F10>		function key 10		*<F10>*	*t_k;* *'t_k;'*
+	"	set t_F1	<F11>		function key 11		*<F11>* *t_F1* *'t_F1'*
+	"	set t_F2	<F12>		function key 12		*<F12>*	*t_F2* *'t_F2'*
+	"	set t_F3	<F13>		function key 13		*<F13>*	*t_F3* *'t_F3'*
+	"	set t_F4	<F14>		function key 14		*<F14>*	*t_F4* *'t_F4'*
+	"	set t_F5	<F15>		function key 15		*<F15>*	*t_F5* *'t_F5'*
+	"	set t_F6	<F16>		function key 16		*<F16>*	*t_F6* *'t_F6'*
+	"	set t_F7	<F17>		function key 17		*<F17>*	*t_F7* *'t_F7'*
+	"	set t_F8	<F18>		function key 18		*<F18>*	*t_F8* *'t_F8'*
+	"	set t_F9	<F19>		function key 19		*<F19>*	*t_F9* *'t_F9'*
+	"		set <S-F1)		shifted function key 1
+	"		set <S-xF1>		alternate <S-F1>		*<S-xF1>*
+	"		set <S-F2>		shifted function key 2		*<S-F2>*
+	"		set <S-xF2>		alternate <S-F2>		*<S-xF2>*
+	"		set <S-F3>		shifted function key 3		*<S-F3>*
+	"		set <S-xF3>		alternate <S-F3>		*<S-xF3>*
+	"		set <S-F4>		shifted function key 4		*<S-F4>*
+	"		set <S-xF4>		alternate <S-F4>		*<S-xF4>*
+	"		set <S-F5>		shifted function key 5		*<S-F5>*
+	"		set <S-F6>		shifted function key 6		*<S-F6>*
+	"		set <S-F7>		shifted function key 7		*<S-F7>*
+	"		set <S-F8>		shifted function key 8		*<S-F8>*
+	"		set <S-F9>		shifted function key 9		*<S-F9>*
+	"		set <S-F10>		shifted function key 10		*<S-F10>*
+	"		set <S-F11>		shifted function key 11		*<S-F11>*
+	"		set <S-F12>		shifted function key 12		*<S-F12>*
+	"		set <S-Tab>		shifted Tab key			*<S-Tab>*
+	"	set t_%1	<Help>		help key			*t_%1* *'t_%1'*
+	"	set t_&8	<Undo>		undo key			*t_&8* *'t_&8'*
+	"	set t_kI	<Insert>	insert key			*t_kI* *'t_kI'*
+"    set t_kD=?	"<Del>		delete key			*t_kD* *'t_kD'*
+"    set t_kb=H	"<BS>		backspace key			*t_kb* *'t_kb'*
+	"	set t_kh	<Home>		home key			*t_kh* *'t_kh'*
+	"		set <S-Home>	shifted home key		*<S-Home>*
+	"		set <xHome>		alternate home key		*<xHome>*
+"    set t_@7=[F	"<End>		end key				*t_@7* *'t_@7'*
+ 	"		set <S-End>		shifted end key			*<S-End>*
+	"		set <xEnd>		alternate end key		*<xEnd>*
+    set t_kP=[I	"<PageUp>	page-up key			*t_kP* *'t_kP'*
+    set t_kN=[G	"PageDown>	page-down key			*t_kN* *'t_kN'*
+	"	set t_K1	<kHome>		keypad home key			*t_K1* *'t_K1'*
+	"	set t_K4	<kEnd>		keypad end key			*t_K4* *'t_K4'*
+	"	set t_K3	<kPageUp>	keypad page-up key		*t_K3* *'t_K3'*
+	"	set t_K5	<kPageDown>	keypad page-down key		*t_K5* *'t_K5'*
+	"	set t_K6	<kPlus>		keypad plus key	      *<kPlus>*	*t_K6* *'t_K6'*
+	"	set t_K7	<kMinus>	keypad minus key     *<kMinus>*	*t_K7* *'t_K7'*
+	"	set t_K9	<xMultiply>	keypad multiply   *<kMultiply>* *t_K9* *'t_K9'*
+	"	set t_KA	<kEnter>	keypad enter key     *<kEnter>*	*t_KA* *'t_KA'*
+
+    hi Statement ctermfg=3;
+    hi Number ctermfg=6;
+endif
+
+if &term == "linux"
+"        syax on
+"    noremap              <Delete>
+"    inoremap             <Delete>
+"    cnoremap             <Delete>
+"    noremap               <BS>
+"    inoremap              <BS>
+
+    hi Statement ctermfg=3;
+    hi Number ctermfg=1;
+    hi Constant ctermfg=1;
+endif
+
+
