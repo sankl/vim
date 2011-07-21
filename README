@@ -1,3 +1,3 @@
 cd
-GIT_SSL_NO_VERIFY=true git clone https://github.com/sankl/vim.git
+GIT_SSL_NO_VERIFY=true export SSH_ASKPASS= git clone https://github.com/sankl/vim.git
 ln -s vim/.vim/.vimrc .vimrc
