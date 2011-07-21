@@ -66,8 +66,9 @@
     set nocompatible
     syntax on
     " Title of the window {
-    set title
-    set titlestring=%F\ %m
+    if &term == "win32"
+        set title titlestring=%F\ %m
+    endif
     " }
 " }
 
