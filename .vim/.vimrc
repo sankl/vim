@@ -413,16 +413,16 @@
     "vnoremap <silent> [ s[]<Esc>P
 
     " autocomplete quotes intelligently (from http://github.com/samdk/vimconf/blob/master/dotvimrc) {
-    inoremap ' '<Esc>:call QuoteInsertionWrapper("'")<CR>a
-    inoremap " "<Esc>:call QuoteInsertionWrapper('"')<CR>a
-    inoremap ` `<Esc>:call QuoteInsertionWrapper('`')<CR>a
-    function! QuoteInsertionWrapper (quote)
-        let col = col('.')
-        if &ft != "vim" && getline('.')[col-2] !~ '\k' && getline('.')[col] !~ '\k'
-            normal ax
-            exe "normal r".a:quote."h"
-        end
-    endfunction
+    "inoremap ' '<Esc>:call QuoteInsertionWrapper("'")<CR>a
+    "inoremap " "<Esc>:call QuoteInsertionWrapper('"')<CR>a
+    "inoremap ` `<Esc>:call QuoteInsertionWrapper('`')<CR>a
+    "function! QuoteInsertionWrapper (quote)
+    "    let col = col('.')
+    "    if &ft != "vim" && getline('.')[col-2] !~ '\k' && getline('.')[col] !~ '\k'
+    "        normal ax
+    "        exe "normal r".a:quote."h"
+    "    end
+    "endfunction
     " }
     " Functional keys {
     noremap         <F2>    :w<CR>
