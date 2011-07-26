@@ -321,7 +321,7 @@
     set wrapscan " Wrap search when EOF is reached
     set gdefault " Always replace all occurrences on a line, not just the first one
     " double escape to clear search highlights
-"XXX    nmap <silent> <esc><esc> :nohlsearch<cr>
+    nnoremap <C-L> :nohlsearch<cr><C-L>
     " redraw window so search terms are centered
     nnoremap n nzz
     nnoremap N Nzz
