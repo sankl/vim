@@ -76,6 +76,10 @@
     "set clipboard+=unnamed " share windows clipboard
     set hidden " you can change buffers without saving
     set history=1250
+    "set undofile
+    "set undodir=*/vim/undo
+    "set swapfile
+    "set directory=*/vim/swp
     " Disable any kind of bell {
     set t_vb=
     set noerrorbells
