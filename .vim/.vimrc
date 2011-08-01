@@ -268,13 +268,13 @@
     hi StatusLine        guifg=Black         guibg=#E0E0E0      gui=bold
     hi StatusLineNC      guifg=Black         guibg=#c0c0c0      gui=italic
     hi SpecialKey term=bold ctermfg=9 guifg=#a0a0ff guibg=#303030 gui=italic
-    hi DiffText term=reverse cterm=bold ctermfg=15 ctermbg=12 gui=bold guifg=#ffffff guibg=#ff5050
+    hi DiffText term=reverse cterm=bold ctermfg=15 ctermbg=red gui=bold guifg=#ffffff guibg=#ff5050
     hi DiffChange term=bold ctermbg=lightmagenta guibg=#880088
     hi Underlined term=underline cterm=underline ctermfg=15
     hi Folded term=standout ctermfg=cyan ctermbg=black guifg=#888800 guibg=#222222
     " Popup menu colors {
-    hi PMenu ctermbg=black guibg=#404040
-    hi PmenuSel ctermbg=13 guifg=black guibg=#b0b0b0
+    hi PMenu ctermbg=grey ctermfg=black guibg=#404040
+    hi PmenuSel ctermfg=4 ctermbg=6 guifg=black guibg=#b0b0b0
     hi Pmenuthumb ctermfg=3 ctermbg=7 guifg=#404040
     " }
 " }
