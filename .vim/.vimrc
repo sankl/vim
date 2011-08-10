@@ -382,10 +382,10 @@
     "map <Home> 0
     " Movement {
     " Smart way to move btw. windows
-    map <C-j> <C-W>j
-    map <C-k> <C-W>k
-    map <C-h> <C-W>h
-    map <C-l> <C-W>l
+    "map <C-j> <C-W>j
+    "map <C-k> <C-W>k
+    "map <C-h> <C-W>h
+    "map <C-l> <C-W>l
     imap <S-UP>     <C-W><Up>i
     imap <S-DOWN>   <C-W><Down>i
     imap <S-RIGHT>  <C-W><Right>i
@@ -394,8 +394,8 @@
     map <S-DOWN>   <C-W><Down>
     map <S-RIGHT>  <C-W><Right>
     map <S-LEFT>   <C-W><Left>
-    map <C-RIGHT>  <ESC>:tabnext<CR>
-    map <C-LEFT>   <ESC>:tabprevious<CR>
+    "map <C-RIGHT>  <ESC>:tabnext<CR>
+    "map <C-LEFT>   <ESC>:tabprevious<CR>
     " up/down move between visual lines instead of actual lines when wrapped
     noremap <Up>   gk
     noremap <Down> gj
