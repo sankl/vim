@@ -74,6 +74,7 @@
 
 " General {
     "set clipboard+=unnamed " share windows clipboard
+    set mouse=a
     set hidden " you can change buffers without saving
     set history=1250
     "set undofile
@@ -159,6 +160,18 @@
 " }
 
 " GUI settings {
+    if has("gui_running") || &t_Co == 88 || &t_Co == 256
+        set background=dark
+        "colo ansi_blows
+        colo wombat256mod
+        "colo Tomorrow-Night
+        "let g:solarized_termcolors=256
+        "colo solarized
+        "colorscheme vimsidian
+        "colo my
+    else
+        colo my
+    end
     if has("gui_running")
         "GUI font, got by: <C-R>=&gfn
         set gfn=Consolas:h9:cRUSSIAN	
@@ -172,8 +185,6 @@
         "set guioptions-=T
         "set guioptions-=m
         set guioptions=ce 
-        colorscheme ansi_blows " vimsidian
-        "colorscheme vimsidian
         "set lines=50 columns=100
         " set mousehide " hide the mouse cursor when typing
         " shows/hides menu bar on Ctrl-F1
@@ -187,7 +198,6 @@
         "set shellpipe=2>&1\|tee
         "set shellredir=>%s\ 2>&1
     else
-        colo my
     endif
 " }
 
@@ -269,13 +279,16 @@
 
 " Colors tunings {
     let g:is_bash=1 " for sh scripts syntax
-    hi StatusLine        guifg=Black         guibg=#E0E0E0      gui=bold
-    hi StatusLineNC      guifg=Black         guibg=#c0c0c0      gui=italic
+    hi Search term=reverse ctermfg=226 ctermbg=240 guifg=#d787ff guibg=#636066
+    hi StatusLine        term=bold,reverse ctermfg=Black ctermbg=LightGrey guifg=Black         guibg=#E0E0E0      gui=bold
+    hi StatusLineNC      term=bold,reverse ctermfg=Black ctermbg=LightGrey guifg=Black         guibg=#c0c0c0      gui=italic
     hi SpecialKey term=bold ctermfg=9 guifg=#a0a0ff guibg=#303030 gui=italic
-    hi DiffText term=reverse cterm=bold ctermfg=15 ctermbg=red gui=bold guifg=#ffffff guibg=#ff5050
-    hi DiffChange term=bold ctermbg=lightmagenta guibg=#880088
+    "hi DiffText term=reverse cterm=bold ctermfg=15 ctermbg=red gui=bold guifg=#ffffff guibg=#ff5050
+    hi DiffText ctermfg=15 guifg=#ffffff
+    "hi DiffChange term=bold ctermbg=lightmagenta guibg=#880088
     hi Underlined term=underline cterm=underline ctermfg=15
-    hi Folded term=standout ctermfg=cyan ctermbg=black guifg=#888800 guibg=#222222
+    "hi Folded term=standout ctermfg=cyan ctermbg=black guifg=#888800 guibg=#222222
+    hi Folded  term=standout ctermfg=111 ctermbg=235 guifg=#888800 guibg=#222222
     " Popup menu colors {
     hi PMenu ctermbg=grey ctermfg=black guibg=#404040
     hi PmenuSel ctermfg=4 ctermbg=6 guifg=black guibg=#b0b0b0
@@ -303,7 +316,7 @@
     function! FoldText() " {
         let line = getline(v:foldstart)
         let sub = substitute(line, '\t', '    ', 'g')
-        let sub = substitute(sub, '^.', '+', 'g')
+        "let sub = substitute(sub, '^.', '+', 'g')
         return sub . ' '
     endfunction " }
     set foldtext=FoldText() " Custom fold text function (cleaner than default)

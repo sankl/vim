@@ -1,3 +1,4 @@
 .vim/.vim_mru_files
 .vim/vim73
 *.swp
+.tmp
