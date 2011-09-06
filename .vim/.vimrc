@@ -593,15 +593,16 @@
 
 " Export HTML {
     func! HTML()
-
-        colo PapayaWhip
+        let current_colorscheme=g:colors_name
         set bg=light
+        colo solarized "PapayaWhip
         %TOhtml
         w! $TEMP/_vim.html
         silent exec "! ".$TEMP."/_vim.html"
         q
         set bg=dark
-        colo ansi_blows
+        silent exec "colo ".current_colorscheme
+        "colo ansi_blows
     endfunc
     command! -nargs=0 HTML <line1>,<line2>call HTML()
 " }
