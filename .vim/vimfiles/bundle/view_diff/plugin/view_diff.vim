@@ -18,7 +18,7 @@ if v:version < 700
     finish 
 endif
 
-if exists("g:load_view_diff")
+if exists("g:load_view_dif1f")
     finish
 endif
 
@@ -348,7 +348,8 @@ function! s:FunctionWrapper(func_ref, ...)
 endfunction
 
 function! s:FoldDiffFile(line_num)
-    return getline(a:line_num) =~ '^\(+\([^+]\|$\)\|-\([^-]\|$\)\|@\|\s\)'
+    "return getline(a:line_num) =~ '^\(+\([^+]\|$\)\|-\([^-]\|$\)\|@\|\s\)'
+    return getline(a:line_num) =~ '^\(Index:\)\@!'
 endfunction
 
 function! s:SetSvnPrefixURL(prefix_URL)
