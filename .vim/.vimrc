@@ -371,7 +371,8 @@
 " Mappings {
     " Substitution {
         " Pull word under cursor into LHS of a substitute
-        nmap <leader>z :%s#\<<c-r>=expand("<cword>")<cr>\>#
+        "nmap <leader>z :%s#\<<c-r>=expand("<cword>")<cr>\>#
+        nmap <Leader>s :%s/\<<C-r><C-w>\>/
         " Pull Visually Highlighted text into LHS of a substitute
         vmap <leader>z :<C-U>%s/\<<c-r>*\>/
     " }
