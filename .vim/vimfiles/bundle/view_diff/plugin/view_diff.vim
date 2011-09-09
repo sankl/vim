@@ -34,7 +34,7 @@ function! s:InitTabVariable()
 endfunction
 
 function! MyPatch()
-   :call system("patch -R -o " . v:fname_out . " " . v:fname_in . " < " . v:fname_diff )
+   :call system("patch -t -o " . v:fname_out . " " . v:fname_in . " < " . v:fname_diff )
 endfunction
 
 function! s:GetFlagChar(...)
@@ -142,7 +142,7 @@ function! s:OpenFileInWindow(fname, init_line_index)
     let buf_num = bufnr(a:fname)
     if buf_num == -1 
         if exists('+shellslash')
-          exec "sfind \\\\". a:fname
+          exec "sfind ". a:fname
         else
           exec "sfind \\". a:fname
         endif
@@ -301,14 +301,23 @@ function! s:ViewDiffInVimDiffMode()
         let t:diff_buffers['1']['buf_id'] = bufnr('%')
         
         let l:orig_patchexpr = &patchexpr
+        let l:fileformat_switched = 0
+        if has("unix") && &fileformat == 'dos'
+            " workaround patch utility bug with patching dos-eoled files on linux
+            set fileformat=unix
+            let l:fileformat_switched = bufnr('%')
+        endif
         set patchexpr=MyPatch() 
-        silent exec ":vert diffpatch " . patch_file
+        silent exec ":rightbelow vert diffpatch " . patch_file
         let &patchexpr = l:orig_patchexpr
         let t:diff_buffers['2']['buf_id'] = bufnr('%')
         exec 'set filetype=' . getbufvar(t:diff_buffers['1']['buf_id'], '&filetype')
 
-        "set the focus to the last window
-        :wincmd w
+        if l:fileformat_switched
+            :wincmd h
+            let &fileformat = 'dos'
+            :wincmd l
+        endif
         
         "FIXME: restoring the height and width of the vimdiff buffers window
         "       does not work 
@@ -366,7 +375,7 @@ map <leader>df :call <SID>FunctionWrapper('s:GotoFileLineUnderCursor')<CR>
 map <leader>dv :call <SID>FunctionWrapper('s:ViewDiffInVimDiffMode')<CR>
 map <leader>dn :call <SID>FunctionWrapper('s:GetAnotherDiff', 1)<CR>
 map <leader>dp :call <SID>FunctionWrapper('s:GetAnotherDiff', 0)<CR>
-map <leader>dz :if &ft=='diff' \| :set foldmethod=expr \| :set foldexpr=<SID>FoldDiffFile(v:lnum) \| :endif<CR>
+map <leader>dz :if &ft=='diff' \| :set foldmethod=expr \| :set foldexpr=<SID>FoldDiffFile(v:lnum) \| :set foldlevel=0 \| :endif<CR>
 map <leader>du :let a=line(".")\| :%d \| :exe "0r!svn diff" \| :exe "norm ".a."zz"<CR>
 
 command! -range -complete=file -nargs=1 VDSetSvnPrefixURL :call <SID>SetSvnPrefixURL(<q-args>)
