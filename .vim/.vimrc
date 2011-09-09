@@ -164,6 +164,7 @@
         set background=dark
         "colo ansi_blows
         colo wombat256mod
+        hi link diffRemoved Constant
         "colo Tomorrow-Night
         "let g:solarized_termcolors=256
         "colo solarized
