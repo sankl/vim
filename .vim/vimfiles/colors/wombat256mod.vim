@@ -20,8 +20,8 @@ let colors_name = "wombat256mod"
 
 
 " General colors
-hi Normal       ctermfg=252     ctermbg=0     cterm=none      guifg=#e3e0d7   guibg=#242424   gui=none
-hi Cursor       ctermfg=0     ctermbg=228     cterm=none      guifg=#242424   guibg=#eae788   gui=none
+hi Normal       ctermfg=252     ctermbg=0     cterm=none      guifg=#e3e0d7   guibg=#000000   gui=none
+hi Cursor       ctermfg=0     ctermbg=228     cterm=none      guifg=#000000   guibg=#eae788   gui=none
 hi Visual       ctermfg=251     ctermbg=239     cterm=none      guifg=#c3c6ca   guibg=#554d4b   gui=none
 hi VisualNOS    ctermfg=251     ctermbg=236     cterm=none      guifg=#c3c6ca   guibg=#303030   gui=none
 hi Search       ctermfg=177     ctermbg=241     cterm=none      guifg=#d787ff   guibg=#636066   gui=none
@@ -45,7 +45,7 @@ endif
 
 " Diff highlighting
 hi DiffAdd                      ctermbg=17                                      guibg=#2a0d6a
-hi DiffDelete   ctermfg=0     ctermbg=60      cterm=none      guifg=#242424   guibg=#3e3969   gui=none
+hi DiffDelete   ctermfg=0     ctermbg=60      cterm=none      guifg=#000000   guibg=#3e3969   gui=none
 hi DiffText                     ctermbg=53      cterm=none                      guibg=#73186e   gui=none
 hi DiffChange                   ctermbg=237                                     guibg=#382a37
 
@@ -83,9 +83,9 @@ hi Function     ctermfg=192     cterm=none      guifg=#cae982   gui=none
 hi Identifier   ctermfg=192     cterm=none      guifg=#cae982   gui=none
 hi Type         ctermfg=186     cterm=none      guifg=#d4d987   gui=none
 hi Special      ctermfg=229     cterm=none      guifg=#eadead   gui=none
-hi String       ctermfg=113     cterm=none      guifg=#95e454   gui=italic
-hi Comment      ctermfg=246     cterm=none      guifg=#9c998e   gui=italic
-hi Todo         ctermfg=101     cterm=none      guifg=#857b6f   gui=italic
+hi String       ctermfg=113     cterm=none      guifg=#95e454   gui=none
+hi Comment      ctermfg=246     cterm=none      guifg=#9c998e   gui=none
+hi Todo         ctermfg=101     cterm=none      guifg=#857b6f   gui=none
 
 
 " Links
