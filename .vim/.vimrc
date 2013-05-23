@@ -1,3 +1,12 @@
+" Prepare patch (insert path before file names):
+" %s#Index: \(.*\)\n\(=\+\)\(\_.\{-}+++ \1\s*(.\{-}/src/\(.\{-}\))\).*$#Index: \4/\1\2--- \4/\1+++ \4/\1#
+" 
+" insert debug printf of curent line number:
+" '<,'>v/^#/s/^/\="printf(\"".line(".")."\");"/
+"
+" sort words in every line of the range
+" %call setline('.', join(sort(split(getline('.'), ' ')), " "))
+"
 " HELP: {
 "   vim: set foldmarker={,} foldlevel=0:
 "       ^ modeline
@@ -42,7 +51,9 @@
     if has("gui_running")
         let g:screen_size_restore_pos = 1
         let g:screen_size_by_vim_instance = 0
-        so $VIM/restore_position.vim
+        if filereadable($VIM."/restore_position.vim")
+            so $VIM/restore_position.vim
+        endif
     endif " }
     " Append all bundles in the runtimepath to the runtimepath {
     let s:bundles = tr(globpath(&rtp, 'bundle/*/.'), "\n", ',')
@@ -54,11 +65,18 @@
         return map(split,'substitute(v:val,''\\\([\\,]\)'',''\1'',"g")')
     endfunction
     for dir in Splitpath(&runtimepath)
-        if dir[0 : strlen($VIM)-1] !=# $VIM && isdirectory(dir.'/doc') && (!filereadable(dir.'/doc/tags') || filewritable(dir.'/doc/tags'))
-        helptags `=dir.'/doc'`
+        if dir[0:strlen($VIM)-1] ==# $VIM && isdirectory(dir.'/doc') && (!filereadable(dir.'/doc/tags') || filewritable(dir.'/doc/tags'))
+            helptags `=dir.'/doc'`
         endif
     endfor
     " }
+    "if !exists('g:VIM_TMP')
+    "    let g:VIM_TMP = $HOME . "/tmp"
+    "    if !isdirectory(g:VIM_TMP)
+    "        system('mkdir -p '.shellescape(g:VIM_TMP))
+    "    endif
+    "endif
+    
 " }
 
 " Basic {
@@ -75,8 +93,10 @@
 " General {
     "set clipboard+=unnamed " share windows clipboard
     set mouse=a
+    set ttymouse=xterm2 " workaround mouse drag problems under screen
     set hidden " you can change buffers without saving
     set history=1250
+    set noundofile
     "set undofile
     "set undodir=*/vim/undo
     "set swapfile
@@ -115,7 +135,7 @@
 " }
 
 " Vim UI {
-    set report=0 " tell us when anything is changed via :...
+    set report=0 " tell us when anything is changed via :... (number of lines substituted, yanked, etc)
     set sidescrolloff=10 " Keep 10 lines at the size
     set scrolloff=5 " Set 10 lines to the curors - when moving vertical..
     set linebreak " Don't break words
@@ -156,7 +176,7 @@
 " }
 
 " OS dependent settings {
-    so $VIM/.vim_terms
+    "so $VIM/.vim_terms
 " }
 
 " GUI settings {
@@ -509,8 +529,10 @@
     let g:fuf_previewHeight = 0
     let g:fuf_enumeratingLimit = 150
     " }
+    let g:yankring_enabled = 0 " Disables the yankring
     " MRU plugin config (http://www.vim.org/scripts/script.php?script_id=521) {
-    let MRU_File = $VIM."/.vim_mru_files" 
+    let loaded_mru=1 " disable MRU plugin
+    "let MRU_File = g:VIM_TMP . "/.vim_mru_files"
     let MRU_Auto_Close = 1
     let MRU_Add_Menu = 0 
     " }
