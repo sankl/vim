@@ -15,7 +15,12 @@
 "
 "   :NoMatchParen
 "
-"   2HTML:
+"   Transcode:
+"   let fr="qwertyuiop[]asdfghjkl;'\zxcvbnm,./éöóêåíãøùçõúôûâàïğîëäæı\ÿ÷ñìèòüáş.QWERTYUIOP[]ASDFGHJKL;'\ZXCVBNM,./ÉÖÓÊÅÍÃØÙÇÕÚÔÛÂÀÏĞÎËÄÆİ\ß×ÑÌÈÒÜÁŞ."
+"   let to="éöóêåíãøùçõúôûâàïğîëäæı\ÿ÷ñìèòüáş.qwertyuiop[]asdfghjkl;'\zxcvbnm,./ÉÖÓÊÅÍÃØÙÇÕÚÔÛÂÀÏĞÎËÄÆİ\ß×ÑÌÈÒÜÁŞ.QWERTYUIOP[]ASDFGHJKL;'\ZXCVBNM,./"
+"   %s#".\+"$#\=submatch(0) . ' ' . tr(submatch(0),fr,to)#
+"
+"   HTML:
 "   :call HTML()
 "     or:
 "   :runtime syntax/2html.vim
@@ -175,7 +180,7 @@
     end
     if has("gui_running")
         "GUI font, got by: <C-R>=&gfn
-        set gfn=Consolas:h9:cRUSSIAN	
+        set gfn=Consolas:h9:cRUSSIAN
         let g:html_font="Consolas"
         set linespace=0 " don't insert any extra pixel lines
                         " betweens rows
@@ -280,6 +285,7 @@
 
 " Colors tunings {
     let g:is_bash=1 " for sh scripts syntax
+    let html_wrong_comments=1 " fix syntax of HTML comment
     hi Search term=reverse ctermfg=226 ctermbg=240 guifg=#d787ff guibg=#636066
     hi StatusLine        term=bold,reverse ctermfg=Black ctermbg=LightGrey guifg=Black         guibg=#E0E0E0      gui=bold
     hi StatusLineNC      term=bold,reverse ctermfg=Black ctermbg=LightGrey guifg=Black         guibg=#c0c0c0      gui=italic
@@ -289,7 +295,7 @@
     "hi DiffChange term=bold ctermbg=lightmagenta guibg=#880088
     hi Underlined term=underline cterm=underline ctermfg=15
     "hi Folded term=standout ctermfg=cyan ctermbg=black guifg=#888800 guibg=#222222
-    hi Folded  term=standout ctermfg=111 ctermbg=235 guifg=#888800 guibg=#222222
+    hi Folded  term=standout ctermfg=100 ctermbg=235 guifg=#888800 guibg=#222222
     " Popup menu colors {
     hi PMenu ctermbg=grey ctermfg=black guibg=#404040
     hi PmenuSel ctermfg=4 ctermbg=6 guifg=black guibg=#b0b0b0
@@ -301,6 +307,7 @@
     "set errorformat=%f:%l:%m " error format for find -exec grep:
     "set path=,,.
     "set tags=$VIM/tags,./tags,tags,../src/tags,../srcfw/tags
+    set tags=
 " }
 
 " Folding {
@@ -510,9 +517,9 @@
     let g:fuf_enumeratingLimit = 150
     " }
     " MRU plugin config (http://www.vim.org/scripts/script.php?script_id=521) {
-    let MRU_File = $VIM."/.vim_mru_files" 
-    let MRU_Auto_Close = 1
-    let MRU_Add_Menu = 0 
+    "let MRU_File = $VIM."/.vim_mru_files" 
+    "let MRU_Auto_Close = 1
+    "let MRU_Add_Menu = 0 
     " }
     " Not in use plugins {
         " Checkstyle plugin tuning {
@@ -534,7 +541,7 @@
     " so $VIM/.vim_keys
     " }
     " i_CTRL-^ - to change the input language
-    " set keymap=russian-jcukenwin iminsert=0 imsearch=0
+    set keymap=russian-jcukenwin iminsert=0 imsearch=0
     "set encoding=UTF-8
     "set encoding=cp1251
     map Ñ‘ `
