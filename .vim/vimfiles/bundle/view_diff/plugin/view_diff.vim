@@ -193,7 +193,16 @@ function! s:GeneratePatchAroundLine(...)
     endwhile
 
     let tmp_patch_file = tempname()
+    " Remove dos EOLs (^M) if any
+    " can also be made via v:errmsg variable which is not empty in case of
+    " error (string to replace is not found)
+	let changes = b:changedtick 
+    silent! exec ':' . top_line_index . ',' . bot_line_index . 's/$//'
     exec ':' . top_line_index . ',' . bot_line_index . 'w ' . tmp_patch_file
+    if changes != b:changedtick
+        " undo ^M replacements we made
+        :silent undo
+    endif
     return tmp_patch_file
 endfunction
 

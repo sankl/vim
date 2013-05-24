@@ -1,4 +1,10 @@
 .vim/.vim_mru_files
 .vim/vim73
+*/doc/tags
 *.swp
+*.01
+*.02
+*.03
+*.04
+*.05
 .tmp
