@@ -3,6 +3,7 @@
 
 ; fight tls when clonnig/pullig over https: 
 ;   export GIT_SSL_NO_VERIFY=true 
+;     git config  http.sslVerify false
 ;   export SSH_ASKPASS=
 
 [core]
@@ -48,3 +49,5 @@
 
 [color]
 	ui = auto
+[http]
+	sslVerify = false
